@@ -8,6 +8,7 @@ import android.widget.SearchView;
 
 import com.drunkers_help.R;
 import com.drunkers_helper.activity.AddBeerActivity;
+import com.drunkers_helper.activity.CounterActivity;
 import com.drunkers_helper.activity.MainActivity;
 import com.robotium.solo.Solo;
 
@@ -40,17 +41,42 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 	
 	}
 	
-	
+	//Test was reseted
 	public void testResetCounter(){
 		  
-		solo.clickOnView(solo.getCurrentActivity().findViewById(R.id.btnResetCounter));
-		 	 
+		solo.clickOnView(solo.getCurrentActivity().findViewById(R.id.btnResetCounter));		
+		
 		solo.clickOnView(solo.getCurrentActivity().findViewById(R.id.btnResetCounter));
 		
 		 assertTrue(solo.waitForText("Counter was reset!"));
 		 
 	}
 
+	
+	//Choose beer and increment counter
+	public void testCounter(){
+		
+		solo.clickOnView(solo.getCurrentActivity().findViewById(R.id.btnResetCounter));	//reset counter
+		solo.clickInList(1);
+		solo.sleep(100);
+		solo.assertCurrentActivity("Expected CounterActivity", CounterActivity.class);
+		solo.sleep(100);
+		solo.searchText("aguila");
+		solo.sleep(100);
+		solo.clickOnView(solo.getCurrentActivity().findViewById(R.id.mImgView1));
+		solo.sleep(100);
+		solo.searchText("1");
+		solo.sleep(100);
+		solo.clickOnView(solo.getCurrentActivity().findViewById(R.id.mImgView1));
+		solo.sleep(100);
+		solo.searchText("2");
+		
+		
+		
+		
+	}
+	
+	
 	
 	/*public void testAddBeer(){
 		
